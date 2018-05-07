@@ -1,0 +1,112 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Portal Notícias - Kevin Keizo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+    <script type="applijewelleryion/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <link href="~/Content/bootstrap.css" rel='stylesheet' type='text/css' />
+    <!-- Custom Theme files -->
+    <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href="~/Content/styles.css" rel='stylesheet' type='text/css' />
+    <script src="~/Content/js/jquery-1.11.1.min.js"></script>
+    <script src="~/Content/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--start-main-->
+    <div class="header">
+        <div class="header-top">
+            <div class="container">
+                <div class="logomarca">
+                    <a href="/"><h1>Kevin Keizo</h1></a>
+                </div>
+
+                <div class="search">
+                    @using (Ajax.BeginForm("Index", "News", new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListNews" }))
+                    {
+                        <form>
+                            <input id="Pesquisa" name="Pesquisa" type="text" value="Buscar Notícias" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <input type="submit" value="">
+                        </form>
+                    }
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+
+        <!--head-bottom-->
+        <div class="head-bottom">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">Home</a></li>
+                        <li><a href="~/News/Index">Notícias</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li><a href="~/Manage/Index">Conectado</a></li>
+                            @Html.Partial("_LoginPartial")
+
+                        }
+                        else
+                        {
+                            <li><a href="~/Account/Login">Painel Administrativo</a></li>
+
+                        }
+
+                    </ul>
+                </div><!--/.nav-collapse -->
+
+            </div>
+            </nav>
+        </div>
+        <!--head-bottom-->
+
+    </div>
+
+
+    @*-start-top-nav--
+        <div class="top-menu">
+            <div class="search">
+                <div class="b-search">
+                    @using (Ajax.BeginForm("Index", "News", new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListNews" }))
+                    {
+                        <form>
+                            <input id="Pesquisa" name="Pesquisa" type="text" value="Buscar Notícias" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                            <input type="submit" value="">
+                        </form>
+                    }
+                </div>
+            </div>
+            <span class="menu"> </span>
+            <ul>
+                <li class="active"><a href="~/Home/Index">HOME</a></li>
+                <li><a href="~/News/Index">NOTÍCIAS</a></li>
+                <li><a href="~/Account/Login">PAINEL ADMINISTRATIVO</a></li>
+                <div class="clearfix"> </div>
+            </ul>
+        </div>*@
+
+    @RenderBody()
+    <hr />
+    <!-- footer -->
+    <!-- footer-bottom -->
+    <div class="copyright">
+        <div class="container">
+            <p>© 2018 Kevin. All rights reserved | Template by <a href="http://kevinkeizo.com/">Kevin Keizo</a></p>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

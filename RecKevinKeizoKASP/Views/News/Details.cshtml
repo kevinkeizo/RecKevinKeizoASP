@@ -1,0 +1,80 @@
+﻿@model RecKevinKeizoKASP.Models.News
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!-- Page Content -->
+<div class="container">
+
+    <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8 tc-ce">
+
+            <!-- Title -->
+            <h5 class="mt-4 top"><a>@Html.DisplayFor(model => model.Title)</a></h5>
+
+
+
+
+            <!-- Date/Time -->
+            <span class="glyphicon glyphicon-list-alt"> Categoria:</span> @Html.DisplayFor(model => model.Category.Name) <br />
+            <span class="glyphicon glyphicon-tags"> Postado: </span> @Html.DisplayFor(model => model.PostDate)
+
+            <hr>
+
+            <!-- Preview Image -->
+            <img class="img-fluid rounded img-responsive" src="@Url.Content(Model.Photo)" alt="">
+
+            <hr>
+
+            <!-- Post Content -->
+            <p class="lead">@Html.DisplayFor(model => model.Text) </p>
+            <hr>
+            <!-- Author -->
+            <p><span class="glyphicon glyphicon-comment"> AUTOR: </span> @Html.DisplayFor(model => model.Author)</p><p class="span_link">
+                <br />
+
+        </div>
+
+        </ul>
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+            <!-- Categories Widget -->
+            <div class="card my-4">
+                <div class="card-body general-news">
+                    <div class="row">
+                        <h3 class="text-center tittle"> Categorias <i class="glyphicon glyphicon-list-alt"></i></h3>
+
+
+                        @{
+                            var Lst = ViewBag.Categorias as IEnumerable<RecKevinKeizoKASP.Models.Category>;
+                        }
+
+                        <ul class="cl-effect-16 text-center">
+                            @foreach (var item in ViewBag.Categorias)
+                            {
+                                using (Ajax.BeginForm("Index", "News", new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListNews" }))
+                                {
+
+                                    <li><input class="category" type="submit" id="Pesquisa" name="Pesquisa" value="@item.Name" onclick="msg()"></li>
+
+
+                                }
+
+                            }
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- /.row -->
+</div>
+<!-- /.container -->

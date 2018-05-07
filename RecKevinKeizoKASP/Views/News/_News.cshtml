@@ -1,0 +1,38 @@
+﻿@model IEnumerable<RecKevinKeizoKASP.Models.News>
+
+<div id="divListNews">
+    <div class="container">
+        <div class="top-news">
+            <div class="top-inner tc-ch">
+                <h3 class="tittle">Notícias  <i class="glyphicon glyphicon-globe"></i></h3>
+                @foreach (var item in Model)
+                {
+                    <h5 class="top"><a href="~/News/Details/@item.NewsId"> @Html.DisplayFor(modelItem => item.Title) <br /> <span class=" glyphicon glyphicon-list-alt span_link"> </span>  @Html.DisplayFor(modelItem => item.Category.Name)<br /><span class="glyphicon glyphicon-tags span_link"> </span>       @Html.DisplayFor(modelItem => item.PostDate)</a> </h5>
+
+                    <div class="col-md-6 top-text">
+                        <a href="~/News/Details/@item.NewsId"><img src="@Url.Content(item.Photo)" height="400px;" width="500px;" class="img-responsive" alt=""></a>
+                    </div>
+                    <div class="col-md-6 top-text two">
+
+                        <p>
+                            @Html.DisplayFor(modelItem => item.Text)
+                        </p>
+                        <p class="span_link"><span class="glyphicon glyphicon-comment"> AUTOR: </span>@Html.DisplayFor(modelItem => item.Author)</p><a class="span_link"></a>
+                        <span class="glyphicon glyphicon-circle-arrow-right"></span><a href="~/News/Details/@item.NewsId">  Leia mais</a><br /><br />
+                        @if (User.Identity.IsAuthenticated)
+                        {<a class="btn btn-success" href="~/News/Edit/@item.NewsId">Editar</a>
+                            <a class="btn btn-success" href="~/News/Delete/@item.NewsId">Apagar</a>}
+                        else
+                        {
+
+                        }
+                    </div>
+
+                    <div class="clearfix"> </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>

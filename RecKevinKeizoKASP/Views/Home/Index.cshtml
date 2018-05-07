@@ -1,0 +1,150 @@
+﻿@model IEnumerable<RecKevinKeizoKASP.Models.News>
+<!-- banner -->
+
+<div class="banner">
+    <div class="container">
+        <h2>Tem que ser Notícias!</h2>
+    </div>
+</div>
+<!-- technology -->
+<div class="technology">
+    <div class="container">
+        <div class="col-md-9 technology-left">
+            <div class="tech-no">
+                <!-- technology-top -->
+                @foreach (var item in Model)
+                {
+
+                    <div class="tc-ch">
+
+                        <div class="tch-img">
+                            <a href="~/News/Details/@item.NewsId"><img src="@Url.Content(item.Photo)" class="img-responsive" alt="" /></a>
+                        </div>
+                        <a class="blog blue" href="singlepage.html">@Html.DisplayFor(modelItem => item.Category.Name)</a>
+                        <h3><a href="~/News/Details/@item.NewsId">@Html.DisplayFor(modelItem => item.Title)</a></h3>
+                        <p>@Html.DisplayFor(modelItem => item.ResumeText)</p>
+
+                        <div class="blog-poast-info">
+                            <ul>
+                                <li><i class="glyphicon glyphicon-user"> </i> @Html.DisplayFor(modelItem => item.Author) </li>
+                                <li><i class="glyphicon glyphicon-pencil"> </i>@Html.DisplayFor(modelItem => item.PostDate)</li>
+
+                            </ul>
+                        </div>
+                    </div>
+                }
+                <div class="clearfix"></div>
+                <div class="tc-ch text-center"><h3><a href="~/News/Index">Mostrar Todas</a></h3></div>
+
+            </div>
+        </div>
+        <!-- technology-right -->
+        <div class="col-md-3 technology-right">
+            <div class="blo-top">
+                <div class="tech-btm">
+                    <img src="~/Content/images/banner1.jpg" class="img-responsive" alt="" />
+                </div>
+            </div>
+
+            <div class="blo-top1">
+                <div class="tech-btm">
+                    <h4>Categorias</h4>
+                    <div class="blog-grids">
+                        @{
+                            var Lst = ViewBag.Categorias as IEnumerable<RecKevinKeizoKASP.Models.Category>;
+                        }
+                        <ul>
+                            @foreach (var item in ViewBag.Categorias)
+                            {
+                                using (Ajax.BeginForm("Index", "News", new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListNews" }))
+                                {
+
+                                    <li><i class="glyphicon glyphicon-asterisk">   .</i><input class="category" type="submit" id="Pesquisa" name="Pesquisa" value="@item.Name" onclick="msg()"></li>
+
+
+                                }
+
+                            }
+                        </ul>
+                        <div class="clearfix"> </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <!-- technology-right -->
+    </div>
+</div>
+
+@*@model IEnumerable<RecVictorAugustoASP.Models.News>
+
+    <div class="content">
+        <div class="container">
+            <div class="content-grids">
+                <div class="col-md-8 content-main">
+                    <div class="content-grid">
+                        @foreach (var item in Model)
+                        {
+                            <div class="content-grid-info">
+                                <img src="@Url.Content(item.Photo)" width="100%" height="320px" alt="" />
+                                <div class="post-info">
+                                    <h4><a href="~/News/Details/@item.NewsId">@Html.DisplayFor(modelItem => item.Title)</a> @Html.DisplayFor(modelItem => item.PostDate) <br /> @Html.DisplayFor(modelItem => item.Category.Name)</h4>
+                                    <p>@Html.DisplayFor(modelItem => item.ResumeText)</p>
+                                    <a href="~/News/Details/@item.NewsId"><span></span>Leia Mais</a>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+                <div class="col-md-4 content-right">
+                    <div class="recent">
+                        <h3>RECENT POSTS</h3>
+                        <ul>
+                            @foreach (var item in Model)
+                            {
+                                <li><a href="~/News/Details/@item.NewsId">@Html.DisplayFor(modelItem => item.Title)</a></li>
+
+                            }
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="archives">
+                        <h3>Por Data</h3>
+                        <ul>
+                            @foreach (var item in Model)
+                            {
+                                <li><a href="~/News/Details/@item.NewsId">@Html.DisplayFor(modelItem => item.PostDate)</a></li>
+
+                            }
+                        </ul>
+                    </div>
+                    <div class="categories">
+                        <h3>CATEGORIES</h3>
+                        @{
+                            var Lst = ViewBag.Categorias as IEnumerable<RecVictorAugustoASP.Models.Category>;
+                        }
+                        <ul>
+                            @foreach (var item in ViewBag.Categorias)
+                            {
+                                using (Ajax.BeginForm("Index", "News", new AjaxOptions { HttpMethod = "Get", InsertionMode = InsertionMode.Replace, UpdateTargetId = "divListNews" }))
+                                {
+
+                                    <li><input class="category" type="submit" id="Pesquisa" name="Pesquisa" value="@item.Name" onclick="msg()"></li>
+
+
+                                }
+
+                            }
+                        </ul>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>*@

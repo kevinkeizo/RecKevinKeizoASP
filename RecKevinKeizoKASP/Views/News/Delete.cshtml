@@ -1,0 +1,72 @@
+﻿@model RecKevinKeizoKASP.Models.News
+
+@{
+    ViewBag.Title = "Apagar";
+}
+<h2 class="btn btn-success">Apagar</h2>
+
+
+<h3>Reamente Deseja Apagar Postagem ?</h3>
+<div>
+    <hr />
+    <dl class="text-center">
+        <dt>
+            @Html.Label("Categoria")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.Name)
+        </dd>
+
+        <dt>
+            @Html.Label("Título")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.Label("Data e Hora")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PostDate)
+        </dd>
+        <dt>
+            @Html.Label("Resumo do Texto")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ResumeText)
+        </dd>
+        <dt>
+            @Html.Label("Descrição da Notícia")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.Label("Autoor da Notícia")
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Apagar" class="btn btn-success" /> |
+            @Html.ActionLink("Voltar", "Index", new { area = "" }, new { @class = "btn btn-success" })
+        </div>
+    }
+</div>
+
+
